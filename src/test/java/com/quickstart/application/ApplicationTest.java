@@ -9,44 +9,64 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+/** */
 public class ApplicationTest {
+    /** */
     private static final Logger LOG = Logger.getLogger(ApplicationTest.class.getName());
-    
-    public ApplicationTest() {
-    }
 
+    /** */
+    private static final String PROPS_FILE_NAME = "app.test.properties";
+
+    /** */
     @Test
     public void testNullProperties() throws Exception {
         LOG.info("test null properties");
+
         new Application(null).launch();
     }
 
+    /** */
     @Test
     public void testLoadProperties() throws Exception {
         LOG.info("test small properties");
-        final Properties properties = properties("app.test.properties");
-        LOG.log(Level.INFO, "properties: [{0}]", properties);
+
+        final Properties props = properties(PROPS_FILE_NAME);
+
+        LOG.log(Level.INFO, "properties: [{0}]", props);
+
         final String key = "message";
-        assertTrue("properties should contain key [" + key + "]", properties.containsKey(key));
-        final String expected = "Test Hello World";
-        assertEquals(expected, properties.getProperty(key));
+
+        assertTrue("properties should contain key [" + key + "]", props.containsKey(key));
+
+        final String exp = "Test Hello World";
+
+        assertEquals(exp, props.getProperty(key));
     }
 
+    /** */
     @Test
     public void testBasicUsage() throws Exception {
         LOG.info("test basic usage");
-        new Application(properties("app.test.properties")).launch();
+
+        new Application(properties(PROPS_FILE_NAME)).launch();
     }
 
+    /** */
     private Properties properties(String fileName) throws IOException {
         final InputStream in = inputStream(fileName);
+
         assertNotNull("can't open input file [" + fileName + "]", in);
-        final Properties properties = new Properties();
-        properties.load(in);
+
+        final Properties props = new Properties();
+
+        props.load(in);
+
         in.close();
-        return properties;
+
+        return props;
     }
 
+    /** */
     private InputStream inputStream(String fileName) {
         return ApplicationTest.class.getClassLoader().getResourceAsStream(fileName);
     }
