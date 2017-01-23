@@ -1,0 +1,5 @@
+Simplified application prototype ("Hello world"), with rudimentary:
+- application logic and properties,
+- unit tests, including reading the properties,
+- logging,
+- documentation.
