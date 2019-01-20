@@ -1,10 +1,10 @@
 package com.quickstart.application;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /** */
 public class MainTest {
@@ -38,9 +38,9 @@ public class MainTest {
         assertNull(new Main(MainTest.class, new String[] {"src/test/resources/app.test.properties"})
                 .configure("broken." + testKey));
 
-        assertEquals("test property by key [" + testKey + "]","Test Hello World",
+        assertEquals("Test Hello World",
                 new Main(MainTest.class, new String[] {"src/test/resources/app.test.properties"})
-                        .configure(testKey).getProperty(testKey));
+                        .configure(testKey).getProperty(testKey),"test property by key [" + testKey + "]");
     }
 
     /** IMPL NOTE this allows conveniently launch {@link Application} without messing with IDE settings. */
