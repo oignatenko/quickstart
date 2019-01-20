@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.*;
-import org.junit.Test;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /** */
 public class ApplicationTest {
@@ -36,7 +36,7 @@ public class ApplicationTest {
 
         final String key = "message";
 
-        assertTrue("properties should contain key [" + key + "]", props.containsKey(key));
+        assertTrue(props.containsKey(key), "properties should contain key [" + key + "]");
 
         final String exp = "Test Hello World";
 
@@ -55,7 +55,7 @@ public class ApplicationTest {
     private Properties properties(String fileName) throws IOException {
         final InputStream in = inputStream(fileName);
 
-        assertNotNull("can't open input file [" + fileName + "]", in);
+        assertNotNull(in, "can't open input file [" + fileName + "]");
 
         final Properties props = new Properties();
 
