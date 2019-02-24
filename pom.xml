@@ -24,7 +24,7 @@
                 <version>3.0.0-M3</version>
                 <configuration>
                     <excludes>
-                        <exclude>some test to exclude here</exclude>
+                        <exclude/>
                     </excludes>
                 </configuration>
             </plugin>
